@@ -6,11 +6,11 @@ Easy Ask AI 包含两个可独立使用的 Skill。**Prompt Ready** 在开始前
 
 ## 安装与开始使用
 
-需要支持 Skill、能读取任务文件的 Agent 宿主。取得本仓库完整文件后，将 `skills/` 下的 **`prompt-ready` 和 `get-clear` 两个文件夹**复制到宿主的用户级技能目录；也可以只安装需要的一项。保留参考文件、脚本及许可证，不要只复制 `SKILL.md`，也不要把套件根目录当成单个 Skill 安装。已有同名目录时先核对本地修改再更新。
+需要支持 Skill、能读取任务文件的 Agent 宿主。从 [GitHub Releases](https://github.com/Ww-Cooooo/easy-ask-ai/releases) 下载完整套件，解压后将 `skills/` 下的 **`prompt-ready` 和 `get-clear` 两个文件夹**复制到宿主的用户级技能目录；也可以只安装需要的一项。保留参考文件、脚本及许可证，不要只复制 `SKILL.md`，也不要把套件根目录当成单个 Skill 安装。已有同名目录时先核对本地修改再更新。
 
-在本机验证过的 Codex 和 DeepSeek harness 中，两者都能发现用户目录下的 `.agents/skills/`。其他版本、宿主或自定义目录以实际技能列表为准。安装后刷新技能列表或新开对话，确认对应名称出现。
+Codex 和官方 DeepSeek Harness 支持用户目录下的 `.agents/skills/`。本轮分别核查了 Codex 的用户级发现、官方 Harness 读取已安装技能后的业务执行，以及社区版 DeepSeek TUI 的列表发现；这些是不同宿主和不同层次的证据，详见 [验证记录](VALIDATION.md)。其他版本、宿主或自定义目录以实际技能列表为准。安装后刷新技能列表或新开对话，确认对应名称出现。
 
-| 使用情境 | Codex | DeepSeek harness |
+| 使用情境 | Codex | 官方 DeepSeek Harness |
 | --- | --- | --- |
 | 准备新任务 | `$prompt-ready`，然后描述想法 | `/prompt-ready`，然后描述想法 |
 | 问清当前不满意的感受，再返修 | `$get-clear`，然后描述感受 | `/get-clear`，然后描述感受 |
