@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-10-19",
+  "dependencies": {
+    "grilling": {
+      "repository": "mattpocock/skills",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
+      "archive_sha256": "0ec75eddf663ff172eeb0cb104a782c533d8e2054844743239fe791179c694e5",
+      "archive_root": "skills-49dd158d1076134a641b33efb035946536778336",
+      "skill_path": "skills/productivity/grilling",
+      "license_path": "LICENSE",
+      "required_files": ["SKILL.md", "agents/openai.yaml"],
+      "license": "MIT"
+    },
+    "more-than-yes": {
+      "repository": "Ww-Cooooo/more-than-yes",
+      "commit": "8e694886c9bbe610f04795f1221fb641f34f5e1f",
+      "archive_sha256": "ac6508d1bbce266c738d52bebc68e30457b93ac8b807111015afa96b6fb7f2aa",
+      "archive_root": "more-than-yes-8e694886c9bbe610f04795f1221fb641f34f5e1f",
+      "skill_path": "",
+      "license_path": "LICENSE",
+      "required_files": ["SKILL.md", "references/first-principles.md", "references/steelmanning.md", "references/worked-examples.md", "SOURCES.md"],
+      "license": "MIT"
+    }
+  }
+}
