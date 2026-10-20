@@ -1,6 +1,6 @@
 interface:
   display_name: "Get Clear｜问清楚再改"
-  short_description: "遇到模糊否定先逐条追问，弄清整体期望与改动边界，确认后继续返修"
+  short_description: "AI味重、仍不满意、说不清怎么改：结合作品逐条问清，确认后返修"
   default_prompt: "使用 $get-clear 帮我把这次不满意的地方问清楚，一次问一个问题，确认修改方向后再做。"
 policy:
   allow_implicit_invocation: true
