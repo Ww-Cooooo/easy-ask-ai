@@ -6,16 +6,18 @@ Easy Ask AI 包含两个可独立使用的 Skill。**Prompt Ready** 在开始前
 
 ## 安装与开始使用
 
-需要支持 Skill、能读取任务文件的 Agent 宿主。从 [GitHub Releases](https://github.com/Ww-Cooooo/easy-ask-ai/releases) 下载完整套件，解压后将 `skills/` 下的 **`prompt-ready` 和 `get-clear` 两个文件夹**复制到宿主的用户级技能目录；也可以只安装需要的一项。保留参考文件、脚本及许可证，不要只复制 `SKILL.md`，也不要把套件根目录当成单个 Skill 安装。已有同名目录时先核对本地修改再更新。
+需要支持 Skill、能读取任务文件的 Agent 宿主。从 [GitHub Releases](https://github.com/Ww-Cooooo/easy-ask-ai/releases) 下载名为 `easy-ask-ai-v<版本号>.zip` 的完整套件，解压后将 `skills/` 下的 **`prompt-ready` 和 `get-clear` 两个文件夹**复制到宿主的用户级技能目录；也可以只安装需要的一项。保留参考文件、脚本及许可证，不要只复制 `SKILL.md`，也不要把套件根目录当成单个 Skill 安装。已有同名目录时先核对本地修改再更新。
 
-Codex 和官方 DeepSeek Harness 支持用户目录下的 `.agents/skills/`。0.2.5 补上访谈中的语义核对，以及明确返修的执行与精确文本检查；0.2.4 的混合反馈入口和 0.2.2 的准备稿自查继续保留。官方 Harness 和社区版 TUI 的历史检查分别保留，不混作本轮模型证据。详见 [验证记录](VALIDATION.md) 与 [可复制的复测材料](docs/feedback-regression.md)。其他版本、宿主或自定义目录以实际技能列表为准。安装后刷新技能列表或新开对话，确认对应名称出现。
+Codex 和官方 DeepSeek Harness 支持用户目录下的 `.agents/skills/`。其他版本、宿主或自定义目录以实际技能列表为准。安装后刷新技能列表或新开对话，确认对应名称出现，再按下表开始任务。
 
 | 使用情境 | Codex | 官方 DeepSeek Harness |
 | --- | --- | --- |
 | 准备新任务 | `$prompt-ready`，然后描述想法 | `/prompt-ready`，然后描述想法 |
 | 问清当前不满意的感受，再返修 | `$get-clear`，然后描述感受 | `/get-clear`，然后描述感受 |
 
-Get Clear 允许自动选择：正常使用时，可以直接对当前成果说“这版不够好看”，无需先记住技能名。自动选择仍取决于宿主与模型；若未加载，显式调用可帮助排查。在自己的项目工作流明确接入，见 [接入说明](docs/integration.md)。
+希望平时直接说“这版不够好看”就进入 Get Clear 的 Codex 用户，可选择将随包的[读取规则](skills/get-clear/assets/agents-snippet.md)接入项目或用户级 `AGENTS.md`。这会要求范围内的返修先读 Skill，再选择直接修改或提问；明确小改不会因此增加访谈。按[接入步骤](skills/get-clear/references/host-integration.md)备份、合并并在新对话核对实际读取，也可随时移除这一段规则。只复制 Skill 文件夹不会自动修改全局配置。
+
+单独安装后仍支持模型自动选择，但我们曾测到“技能列表可见、模型却跳过读取”。0.2.6 将可选宿主规则随包交付，保留明确返修的精确修改与准备稿自查。带规则、只装 Skill 和显式调用的证据分别记录在[验证记录](VALIDATION.md)，不承诺所有未来任务100%触发。Codex 的规则不会自动作用于 DeepSeek Harness、Claude Code 或 WorkBuddy；其他宿主的接入须按实际指令机制核对。[入口排查](docs/integration.md)
 
 首次进入准备或反馈访谈流程时会检查 `grilling` 和 `more-than-yes`。缺失时，Agent 在当前授权和宿主权限内从固定 GitHub 版本下载、审阅后补装，保留已有有效安装。Get Clear 的明确修改分支跳过访谈与这两项依赖准备。辅助脚本需要 Python 3.10+；没有 Python 时可使用宿主已有安装和编辑能力。详见 [依赖说明](skills/get-clear/references/dependencies.md)。
 

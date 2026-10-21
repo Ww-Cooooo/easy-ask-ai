@@ -10,6 +10,8 @@ Easy Ask AI 的反馈澄清与返修 Skill。看到当前成果却只能说“AI
 - DeepSeek harness：输入 `/get-clear`，随后描述反馈。
 - 隐式触发：对当前成果表达含糊的不满意，不需要点名。是否实际选择由宿主与模型决定；遇到漏选时先检查列表、调用策略和读技能记录。
 
+希望日常返修先进入本流程时，可选择[接入宿主工作规则](references/host-integration.md)。Codex 用户将随包的 [agents-snippet.md](assets/agents-snippet.md) 合并到实际生效的项目或用户级指令，保留原有内容，再新开对话核验。这段规则让明确修改先读取执行说明、含糊反馈先读取访谈说明；复制 Skill 文件夹不会自动改全局配置。其他宿主须单独确认其指令入口，不能沿用 Codex 的加载结论。
+
 首次进入反馈访谈检查 `grilling` 与 `more-than-yes`，缺少时按 [依赖准备](references/dependencies.md) 在授权内补装。明确修改直接走执行分支，跳过访谈和依赖准备。辅助脚本需要 Python 3.10+，不自动安装系统运行时。只有本 Skill 不足以赋予宿主制作网页、生成视频等工具能力；实际返修使用现有领域工具。
 
 ## 你要回答什么

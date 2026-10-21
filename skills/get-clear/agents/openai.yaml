@@ -1,6 +1,6 @@
 interface:
   display_name: "Get Clear｜问清楚再改"
-  short_description: "含糊返修先问清；明确改动直接执行，核对实际差异后交付"
+  short_description: "返修先读后分流：明确小改直接做，含糊反馈问清再改"
   default_prompt: "使用 $get-clear 处理这次修改：含糊期望先逐条问清并确认；明确或已确认的改动直接完成，核对实际结果后交付。"
 policy:
   allow_implicit_invocation: true
