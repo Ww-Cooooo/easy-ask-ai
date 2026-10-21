@@ -8,7 +8,7 @@ Easy Ask AI 包含两个可独立使用的 Skill。**Prompt Ready** 在开始前
 
 需要支持 Skill、能读取任务文件的 Agent 宿主。从 [GitHub Releases](https://github.com/Ww-Cooooo/easy-ask-ai/releases) 下载完整套件，解压后将 `skills/` 下的 **`prompt-ready` 和 `get-clear` 两个文件夹**复制到宿主的用户级技能目录；也可以只安装需要的一项。保留参考文件、脚本及许可证，不要只复制 `SKILL.md`，也不要把套件根目录当成单个 Skill 安装。已有同名目录时先核对本地修改再更新。
 
-Codex 和官方 DeepSeek Harness 支持用户目录下的 `.agents/skills/`。0.2.4 补足“好点了，但还是不对，再参考某种做法”的混合反馈入口，并记录多模型、不同上下文下的实际结果；0.2.3 改进后续追问，0.2.2 检查准备者在原流程内自行纠错。官方 Harness 和社区版 TUI 的历史检查分别保留，不混作本轮模型证据。详见 [验证记录](VALIDATION.md) 与 [可复制的复测材料](docs/feedback-regression.md)。其他版本、宿主或自定义目录以实际技能列表为准。安装后刷新技能列表或新开对话，确认对应名称出现。
+Codex 和官方 DeepSeek Harness 支持用户目录下的 `.agents/skills/`。0.2.5 补上访谈中的语义核对，以及明确返修的执行与精确文本检查；0.2.4 的混合反馈入口和 0.2.2 的准备稿自查继续保留。官方 Harness 和社区版 TUI 的历史检查分别保留，不混作本轮模型证据。详见 [验证记录](VALIDATION.md) 与 [可复制的复测材料](docs/feedback-regression.md)。其他版本、宿主或自定义目录以实际技能列表为准。安装后刷新技能列表或新开对话，确认对应名称出现。
 
 | 使用情境 | Codex | 官方 DeepSeek Harness |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ Codex 和官方 DeepSeek Harness 支持用户目录下的 `.agents/skills/`。0.
 
 Get Clear 允许自动选择：正常使用时，可以直接对当前成果说“这版不够好看”，无需先记住技能名。自动选择仍取决于宿主与模型；若未加载，显式调用可帮助排查。在自己的项目工作流明确接入，见 [接入说明](docs/integration.md)。
 
-两个 Skill 首次运行都会检查 `grilling` 和 `more-than-yes`。缺失时，Agent 在当前授权和宿主权限内从固定 GitHub 版本下载、审阅后补装，保留已有有效安装。辅助脚本需要 Python 3.10+；没有 Python 时可使用宿主已有安装能力。详见 [依赖说明](skills/get-clear/references/dependencies.md)。
+首次进入准备或反馈访谈流程时会检查 `grilling` 和 `more-than-yes`。缺失时，Agent 在当前授权和宿主权限内从固定 GitHub 版本下载、审阅后补装，保留已有有效安装。Get Clear 的明确修改分支跳过访谈与这两项依赖准备。辅助脚本需要 Python 3.10+；没有 Python 时可使用宿主已有安装和编辑能力。详见 [依赖说明](skills/get-clear/references/dependencies.md)。
 
 ## 为什么做这套工具
 
@@ -49,6 +49,7 @@ Easy Ask AI 把这两段协作做成可重复使用的流程。它不会用更�
 Get Clear 面向已有成果的模糊返修，适用于网页、视频、文案、产品和业务方案等任务。“好点了，但还是不对”仍有待解决的分歧；即使用户建议参考某种做法，也要先确认想改变的体验，不能直接把方案换成参考案例。
 
 - **先看作品和上下文。** 区分观察到的问题、用户的感受与模型的猜测。
+- **复述时不偷换用途。** 保留用户所指的人、行动和所处阶段；会导致不同改法的解释先辨清，再询问对应材料。
 - **调用 grilling，一次问一个主要问题。** 问题中带上现稿的句子或作品里的具体表现。用户说不清时，用容易比较的短例帮助辨认，不要求用户先找到参考或自行分析原因。
 - **问到整体方向和关键边界明确。** 不设固定题数，不因问清一个局部就结束，也不以“先做个小样”为由绕过尚未明确的意图。
 - **调用 more-than-yes 检查遗漏。** 核对解释、取舍、已接受内容与可实现性，再复述修改方向，请用户确认。
@@ -56,7 +57,7 @@ Get Clear 面向已有成果的模糊返修，适用于网页、视频、文案�
 
 例如，用户说一个报名页“没档次”，问题可能是促销感太重，也可能是没有体现活动本身的吸引力。Agent 需要结合页面帮助用户区分；即使知道“不想像促销”，仍要进一步弄清希望带来的感受、必须保留的信息以及明确拒绝的方向。[网页访谈](skills/get-clear/examples/landing-page.md) · [用户仍说不清时怎样继续](skills/get-clear/examples/unclear-copy.md)，均为虚构教学示例。
 
-明确修改直接执行，例如“只把标题换成这一句”。用户已经确认的答案不重问。目标是帮助表达并完成工作，不能要求用户证明自己的偏好，也不能保证读懂脑中所有画面。
+明确修改直接进入短执行分支，例如“只把标题换成这一句，其他不动”：当前回合实际保存并核验，精确替换还要保留无关内容、编码和换行；包内提供仅依赖 Python 标准库的替换工具。用户已经确认的答案不重问。目标是帮助表达并完成工作，不能要求用户证明自己的偏好，也不能保证读懂脑中所有画面。
 
 ## 旧版本与接入
 
@@ -72,8 +73,9 @@ Get Clear 面向已有成果的模糊返修，适用于网页、视频、文案�
 
 ```text
 python -X utf8 -m unittest discover -s skills/prompt-ready/tests -v
+python -X utf8 -m unittest discover -s skills/get-clear/tests -v
 ```
 
-这些测试检查依赖辅助脚本的处理与安装边界，不能代替技能触发或业务效果验证。详细 Prompt 和访谈也不能消除模型能力差距。
+这些测试分别检查依赖安装边界与精确替换工具，不能代替技能触发或业务效果验证。详细 Prompt 和访谈也不能消除模型能力差距。
 
 本套件采用 [MIT](LICENSE)。两项运行依赖的固定版本、来源与许可证随每个技能包提供：[Prompt Ready 来源](skills/prompt-ready/SOURCES.md)、[Get Clear 来源](skills/get-clear/SOURCES.md)。
