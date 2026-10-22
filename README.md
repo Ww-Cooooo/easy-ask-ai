@@ -17,7 +17,7 @@ Codex 和官方 DeepSeek Harness 支持用户目录下的 `.agents/skills/`。�
 
 希望平时直接说“这版不够好看”就进入 Get Clear 的 Codex 用户，可选择将随包的[读取规则](skills/get-clear/assets/agents-snippet.md)接入项目或用户级 `AGENTS.md`。这会要求范围内的返修先读 Skill，再选择直接修改或提问；明确小改不会因此增加访谈。按[接入步骤](skills/get-clear/references/host-integration.md)备份、合并并在新对话核对实际读取，也可随时移除这一段规则。只复制 Skill 文件夹不会自动修改全局配置。
 
-单独安装后仍支持模型自动选择，但我们曾测到“技能列表可见、模型却跳过读取”。0.2.6 将可选宿主规则随包交付；0.2.7 进一步区分效果期望与具体操作，核对必选/可选条件，并默认分文件读取访谈材料。明确返修的精确修改与准备稿自查继续保留。带规则、只装 Skill 和显式调用的证据分别记录在[验证记录](VALIDATION.md)，不承诺所有未来任务100%触发。Codex 的规则不会自动作用于 DeepSeek Harness、Claude Code 或 WorkBuddy；其他宿主的接入须按实际指令机制核对。[入口排查](docs/integration.md)
+单独安装后仍支持模型自动选择，但我们曾测到“技能列表可见、模型却跳过读取”。可选宿主规则随包交付，明确小改与含糊反馈分别处理。0.2.8 增加确认前的原句对照：检查必须、可选等条件及重复表述，先自行纠正，再请用户确认修改方向；读取材料的顺序也在入口写明。明确返修的精确修改与准备稿自查继续保留。带规则、只装 Skill 和显式调用的证据分别记录在[验证记录](VALIDATION.md)，不承诺所有未来任务100%触发。Codex 的规则不会自动作用于 DeepSeek Harness、Claude Code 或 WorkBuddy；其他宿主的接入须按实际指令机制核对。[入口排查](docs/integration.md)
 
 首次进入准备或反馈访谈流程时会检查 `grilling` 和 `more-than-yes`。缺失时，Agent 在当前授权和宿主权限内从固定 GitHub 版本下载、审阅后补装，保留已有有效安装。Get Clear 的明确修改分支跳过访谈与这两项依赖准备。辅助脚本需要 Python 3.10+；没有 Python 时可使用宿主已有安装和编辑能力。详见 [依赖说明](skills/get-clear/references/dependencies.md)。
 
