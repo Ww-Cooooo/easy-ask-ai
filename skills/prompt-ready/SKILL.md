@@ -3,7 +3,7 @@ name: prompt-ready
 description: 把想法或复杂任务准备成可交给新对话执行的详细 Prompt。用于用户要求梳理需求、深入追问、完善方案、准备执行提示词或给另一个模型交接任务；覆盖开发、创作、研究和业务工作。普通模糊请求先询问是否进入准备流程，明确的小修改和单纯问答不启动长访谈。
 license: MIT
 metadata:
-  version: "0.2.3"
+  version: "0.2.4"
 ---
 
 # Prompt Ready｜执行提示词准备
