@@ -36,7 +36,7 @@ class ReminderContract(unittest.TestCase):
         payload = json.loads(result.stdout)['hookSpecificOutput']
         self.assertEqual(payload['hookEventName'], 'UserPromptSubmit')
         self.assertIn((self.root / 'SKILL.md').as_posix(), payload['additionalContext'])
-        self.assertIn('访谈回合的产物是用户现在能回答的一问', payload['additionalContext'])
+        self.assertIn('明确改动直接执行', payload['additionalContext'])
         self.assertNotIn('PRIVATE_', result.stdout + result.stderr)
 
     def test_text_and_hook_carry_the_same_live_packaged_rule(self):
